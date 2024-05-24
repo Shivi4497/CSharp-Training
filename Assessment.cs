@@ -22,7 +22,7 @@ namespace C_Assessment
             products.Add(new Product { ProductId = 6, ProductName = "Shoes", ProductPrice = 3300 });
         }
             
-    public void LoginPage()
+    public bool LoginPage()
         {
             Console.WriteLine("Welcome to Login Page");
             Console.WriteLine("Please enter username : ");
@@ -35,10 +35,12 @@ namespace C_Assessment
             {
                 Console.WriteLine("Congralutions! You are loggedIn");
                 Console.WriteLine("Please select from below products to Add in your cart!");
+                return true;
             }
             else
             {
                 Console.WriteLine("Your username or password is incorrect");
+                return false;
             }
 
         }
@@ -117,7 +119,18 @@ namespace C_Assessment
             switch (option) 
             {
                 case 1:
-                    app.LoginPage();
+                    bool loggedin = app.LoginPage();
+                    if (loggedin)
+                    {
+                        app.DisplayProducts();
+
+                        Console.WriteLine();
+
+                        app.AddItemsToCart();
+
+                        app.DisplayCart();
+                    }
+
                     break;
                 case 2:
                     app.RegisterPage();
@@ -126,14 +139,6 @@ namespace C_Assessment
                     Console.WriteLine("You have not selected a valid option");
                     break;
             }
-
-            app.DisplayProducts();
-
-            Console.WriteLine();
-
-            app.AddItemsToCart();
-
-            app.DisplayCart();
         }
     }
 }
